@@ -56,20 +56,20 @@ class MainActivity : AppCompatActivity() {
     }
     fun createMaleGuy(view: View)
     {
-        if(Farm.money >= 50) {
-            Farm.addGuy("MaleGuy", this, 50);
+        if(Farm.money >= 100) {
+            Farm.addGuy("MaleGuy", this, 100);
         }
     }
     fun createFemaleGuy(view: View)
     {
-        if(Farm.money >= 100) {
-            Farm.addGuy("FemaleGuy", this, 100);
+        if(Farm.money >= 200) {
+            Farm.addGuy("FemaleGuy", this, 200);
         }
     }
     fun createDefaultGuy(view: View)
     {
-        if(Farm.money >= 10) {
-            Farm.addGuy("DefaultGuy", this, 10);
+        if(Farm.money >= 20) {
+            Farm.addGuy("DefaultGuy", this, 20);
         }
     }
     fun createPredatorGuy(view: View)
@@ -84,8 +84,8 @@ class MainActivity : AppCompatActivity() {
     }
     fun buyFood(view:View)
     {
-        if(Farm.money >= 10) {
-            Farm.money -= 10;
+        if(Farm.money >= 15) {
+            Farm.money -= 15;
             Farm.food ++;
         }
     }

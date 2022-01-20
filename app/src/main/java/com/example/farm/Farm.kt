@@ -93,7 +93,7 @@ class Farm {
 
     companion object
     {
-        var money: Float = 10F;
+        var money: Float = 20F;
         var guys:MutableList<Guy> = mutableListOf();
         var food: Int = 0
         fun addGuy(name: String, context: Context, cost: Int)
@@ -124,9 +124,9 @@ class Farm {
                         else -> 0.01F
                     }
                     money = min(money, 9999F)
-                    if(curGuy.hungry >= 2500)
+                    if(curGuy.hungry >= 5000)
                         toDel.add(curGuy)
-                    else if(curGuy.hungry >= 1000)
+                    else if(curGuy.hungry >= 2000)
                         curGuy.showCloud(context)
                 }
                 for(delGuy in toDel)
@@ -135,14 +135,14 @@ class Farm {
                     guys.remove(delGuy)
                 }
                 save(context)
-                Thread.sleep(900);
+                Thread.sleep(1800);
             }
         }
 
         fun newGame(context: Context) {
             for(curGuy in guys) curGuy.delete(context)
             guys.clear()
-            money = 10F;
+            money = 20F;
             food = 0
         }
 
@@ -182,7 +182,7 @@ class Farm {
             try {
                 val sv = context.getSharedPreferences("DATA", Context.MODE_PRIVATE)
                 food = sv.getInt("FOOD", 0)
-                money = sv.getFloat("MNY", 10F)
+                money = sv.getFloat("MNY", 20F)
                 val num = sv.getInt("NUM", 0)
                 val time = sv.getLong("TIME", System.currentTimeMillis())
                 for(guy in guys) guy.delete(context)
@@ -192,8 +192,8 @@ class Farm {
                         sv.getString("type$i", "").toString(), context,
                         sv.getInt("x$i", 0), sv.getInt("y$i", 0)
                     )
-                    val dop = (System.currentTimeMillis() - time) / 900
-                    val dop2 = min(max(2500 - sv.getLong("food$i", 2500), 0), dop)
+                    val dop = (System.currentTimeMillis() - time) / 1800
+                    val dop2 = min(max(5000 - sv.getLong("food$i", 5000), 0), dop)
                     money += when (guy.type) {
                         "PredatorGuy" ->
                             0.04F * dop2
