@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 
 class MainActivity : AppCompatActivity() {
     private lateinit var music:MediaPlayer;
+    private var flag = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,10 +34,9 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         if(!pause)
             music.start()
-    }
-    override fun onRestart() {
-        super.onRestart()
-        Farm.load(this)
+        if(flag)
+            Farm.load(this)
+        flag = true
     }
 
     private var pause: Boolean = false
