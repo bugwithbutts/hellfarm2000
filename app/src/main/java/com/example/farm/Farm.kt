@@ -108,9 +108,10 @@ class Farm {
                 }
             }
         }
+        var isRunning = false
         fun go(context: Context)
         {
-            while(true)
+            while(isRunning)
             {
                 val toDel:MutableList<Guy> = mutableListOf()
                 for(curGuy in guys)
@@ -156,7 +157,6 @@ class Farm {
                   Thread.sleep(10)
                 }
             }).start();
-            load(context)
         }
         private fun save(context: Context){
             try {

@@ -8,17 +8,13 @@ import androidx.appcompat.widget.Toolbar;
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var music:MediaPlayer;
-    private var flag = false
+    private lateinit var music: MediaPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         var toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-        Farm.start(this);
-        Thread(Runnable{
-            Farm.go(this);
-        }).start()
+        Farm.start(this)
         music = MediaPlayer.create(this, R.raw.farm)
         music.isLooping = true
         music.setVolume(0.4F,0.4F)
@@ -28,15 +24,18 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         music.pause();
+        Farm.isRunning = false
     }
 
     override fun onResume() {
         super.onResume()
         if(!pause)
             music.start()
-        if(flag)
-            Farm.load(this)
-        flag = true
+        Farm.isRunning = true
+        Farm.load(this)
+        Thread(Runnable{
+            Farm.go(this);
+        }).start()
     }
 
     private var pause: Boolean = false
