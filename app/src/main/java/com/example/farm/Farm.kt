@@ -138,6 +138,7 @@ class Farm {
                 save(context)
                 Thread.sleep(1800);
             }
+            save(context)
         }
 
         fun newGame(context: Context) {
