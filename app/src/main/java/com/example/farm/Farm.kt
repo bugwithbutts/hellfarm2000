@@ -136,7 +136,9 @@ class Farm {
                     guys.remove(delGuy)
                 }
                 save(context)
-                Thread.sleep(1800);
+                Thread.sleep(895);
+                save(context)
+                Thread.sleep(900)
             }
             save(context)
         }
