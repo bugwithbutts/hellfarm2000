@@ -32,8 +32,10 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         if(!pause)
             music.start()
+        while(!Farm.isStopped) {
+            Thread.sleep(20)
+        }
         Farm.load(this)
-        while(!Farm.isStopped) { }
         Farm.isRunning = true
         Thread(Runnable{
             Farm.go(this);
