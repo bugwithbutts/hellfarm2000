@@ -109,8 +109,10 @@ class Farm {
             }
         }
         var isRunning = false
+        var isStopped = true
         fun go(context: Context)
         {
+            isStopped = false
             while(isRunning)
             {
                 val toDel:MutableList<Guy> = mutableListOf()
@@ -137,10 +139,12 @@ class Farm {
                 }
                 save(context)
                 Thread.sleep(895);
+                if(!isRunning) break;
                 save(context)
                 Thread.sleep(900)
             }
             save(context)
+            isStopped = true
         }
 
         fun newGame(context: Context) {

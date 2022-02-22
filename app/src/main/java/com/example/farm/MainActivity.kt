@@ -3,6 +3,7 @@ package com.example.farm
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.Toolbar;
 
@@ -31,8 +32,9 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         if(!pause)
             music.start()
-        Farm.isRunning = true
         Farm.load(this)
+        while(!Farm.isStopped) { }
+        Farm.isRunning = true
         Thread(Runnable{
             Farm.go(this);
         }).start()
